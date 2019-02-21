@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "sticky-sidebar": [
+        "dist/sticky-sidebar"
+      ],
+      "sticky-sidebar/*": [
+        "dist/sticky-sidebar/*"
+      ]
+    }
   }
 }

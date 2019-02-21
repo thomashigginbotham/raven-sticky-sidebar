@@ -1,0 +1,67 @@
+/* ==-- Sample Styles --== */
+
+/* Global */
+.sidebar {
+  padding: 1rem;
+  background-color: #eee;
+}
+
+/* Flexbox Layout */
+.flex-wrapper {
+  display: flex;
+  margin-bottom: 4rem;
+}
+
+.flex-sidebar {
+  flex: 1 1 20rem;
+  margin-right: 1rem;
+}
+
+.flex-content {
+  flex: 1 1 100%;
+}
+
+.nested-float-sidebar {
+  float: right;
+  margin-left: 2%;
+  width: 25%;
+}
+
+/* Grid Layout */
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 4fr 3fr;
+  grid-gap: 1rem;
+  margin-bottom: 4rem;
+  padding: 1rem;
+  height: 300px;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
+.menu {
+  order: -1;
+}
+
+.aux {
+  order: 1;
+}
+
+/* Float Layout */
+.float-wrapper::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.float-sidebar {
+  float: left;
+  box-sizing: border-box;
+  margin-right: 1rem;
+  width: 25rem;
+}
+
+.float-content {
+  float: right;
+  width: calc(100% - 26rem);
+}
