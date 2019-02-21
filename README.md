@@ -71,6 +71,49 @@ export class AppComponent { }
 
 > Only add the **container** attribute if the sidebar is expected to stick within a parent element that has a limited height with its own scroll bars.
 
+## FAQ
+
+### How do I add a bottom offset?
+
+The primary reason for needing a bottom offset is when the sidebar is larger than the viewport, causing the bottom of the sidebar content to butt up against the bottom of the viewport.
+
+This can be easily fixed by adding some bottom padding to the last element in the sidebar. You may also need to adjust how you add your background to prevent the background from showing below the last element (adding padding to a wrapper element can help in those cases).
+
+### The sidebar is not working correctly. How can I fix it?
+
+Try creating a new Angular project with the bare minimum code necessary to make use of raven-sticky-sidebar. Gradually make changes to reproduce your issue in the bare environment.
+
+### The sidebar is still not working correctly. What else can I do?
+
+Sometimes, when content in a sidebar is changed, it can cause problems with the initial calculations that were made. However, you can recalculate using the sidebar component’s `reset()` method.
+
+```ts
+import { Component, ViewChild } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <style>/* ... */</style>
+
+    <raven-sticky-sidebar #sidebar>
+      <!-- ... -->
+    </raven-sticky-sidebar>
+  `
+})
+export class AppComponent {
+  @ViewChild('sidebar')
+  sidebar: StickySidebarComponent;
+
+  someFuncThatUpdatesContent() {
+    // Update content in sidebar
+    // ...
+
+    // Reset sidebar
+    this.sidebar.reset()
+  }
+}
+```
+
 ## Browser Compatibility
 
 Internet Explorer does not support **position:sticky** and is not compatible with raven-sticky-sidebar. [Most other major browsers have support](https://caniuse.com/#search=position%3Asticky) (including Edge).
