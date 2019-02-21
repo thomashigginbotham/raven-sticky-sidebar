@@ -32,20 +32,28 @@ export class StickySidebarComponent implements OnInit {
     this._containerElement = document.querySelector(value);
 
     if (this._wrapperElement) {
-      this.setSidebarHeight();
-      this.initTopOffset();
-
-      this._scrollTop = this._containerElement.scrollTop;
+      this.reset();
     }
   }
 
   ngOnInit() {
     this._wrapperElement = <HTMLDivElement>this.wrapperElementRef.nativeElement;
 
-    this.setSidebarHeight();
-    this.initTopOffset();
+    this.reset();
     this.addScrollListener();
     this.addResizeListener();
+  }
+
+  /**
+   * Resets sidebar based on current conditions.
+   */
+  reset() {
+    const hostElement = <HTMLDivElement>this._hostElementRef.nativeElement;
+
+    hostElement.style.minHeight = '0';
+
+    this.setSidebarHeight();
+    this.initTopOffset();
 
     this._scrollTop = this._containerElement.scrollTop;
   }
@@ -138,20 +146,11 @@ export class StickySidebarComponent implements OnInit {
   }
 
   /**
-   * Watches the window.resize event and recalculates top offset.
+   * Watches the window.resize event and resets sidebar.
    */
   addResizeListener() {
     window.addEventListener('resize', () => {
-      requestAnimationFrame(() => {
-        const hostElement = <HTMLDivElement>this._hostElementRef.nativeElement;
-
-        hostElement.style.minHeight = '0';
-
-        this.setSidebarHeight();
-        this.initTopOffset();
-
-        this._scrollTop = this._containerElement.scrollTop;
-      });
+      requestAnimationFrame(() => this.reset());
     });
   }
 
