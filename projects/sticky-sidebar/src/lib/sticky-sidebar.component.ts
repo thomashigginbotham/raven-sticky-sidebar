@@ -9,7 +9,7 @@ export class StickySidebarComponent implements OnInit {
   @Input('topOffset')
   customTopOffset: number;
 
-  @ViewChild('wrapper')
+  @ViewChild('wrapper', { static: true })
   wrapperElementRef: ElementRef;
 
   private _containerElement: HTMLElement;

@@ -1,6 +1,6 @@
 {
   "name": "raven-sticky-sidebar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An Angular component for making sidebars that stick in place while content around them scrolls as usual.",
   "keywords": ["angular", "sidebar", "sticky", "scroll", "raven"],
   "license": "MIT",
